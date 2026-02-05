@@ -1,7 +1,7 @@
 import "../styles/App.css";
 
 const inputClass =
-  "w-full px-4 py-3 rounded-xl border border-slate-200 bg-white/80 text-slate-800 placeholder:text-slate-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-slate-300 focus:border-transparent";
+  "w-full px-4 py-3 rounded-xl border border-slate-200 bg-white/80 text-slate-800 placeholder:text-slate-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-slate-300 focus:border-transparent ";
 
 const labelClass = "text-sm font-medium text-slate-600 mb-1.5 block";
 
@@ -12,7 +12,7 @@ const cardClass =
   "bg-white rounded-2xl p-6 shadow-sm border border-slate-100 mb-6 last:mb-0";
 
 const buttonClass =
-  "w-full py-3 rounded-xl bg-slate-800 text-white font-medium text-sm transition-all duration-200 hover:bg-slate-700 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2";
+  "w-full py-3 rounded-xl bg-slate-800 text-white font-medium text-sm transition-all duration-200 hover:bg-slate-700 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 cursor-pointer";
 
 function Main() {
   return (
