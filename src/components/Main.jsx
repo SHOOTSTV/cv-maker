@@ -86,6 +86,26 @@ function Main() {
       ),
     }));
   };
+
+  const removeWorkExperience = (id) => {
+    if (cvData.workExperience.length > 1) {
+      setCvData((prev) => ({
+        ...prev,
+        workExperience: prev.workExperience.filter((work) => work.id !== id),
+      }));
+    }
+  };
+
+  const removeEducationalExperience = (id) => {
+    if (cvData.educationalExperience.length > 1) {
+      setCvData((prev) => ({
+        ...prev,
+        educationalExperience: prev.educationalExperience.filter(
+          (edu) => edu.id !== id
+        ),
+      }));
+    }
+  };
   return (
     <>
       <main className="min-h-screen bg-linear-to-br from-slate-50 via-white to-slate-100 p-6 md:p-8">
@@ -213,12 +233,24 @@ function Main() {
                       className="space-y-4 p-4 rounded-xl bg-slate-50/80 border border-slate-100"
                     >
                       <div>
-                        <label
-                          htmlFor={`degree-${edu.id}`}
-                          className={labelClass}
-                        >
-                          Degree
-                        </label>
+                        <div className="flex items-center justify-between">
+                          <label
+                            htmlFor={`degree-${edu.id}`}
+                            className={labelClass}
+                          >
+                            Degree
+                          </label>
+                          {cvData.educationalExperience.length > 1 && (
+                            <button
+                              onClick={() =>
+                                removeEducationalExperience(edu.id)
+                              }
+                              className={`text-sm text-red-600 hover:text-red-700 cursor-pointer transition-all duration-200`}
+                            >
+                              Delete
+                            </button>
+                          )}
+                        </div>
                         <input
                           type="text"
                           id={`degree-${edu.id}`}
@@ -326,12 +358,22 @@ function Main() {
                       className="space-y-4 p-4 rounded-xl bg-slate-50/80 border border-slate-100"
                     >
                       <div>
-                        <label
-                          htmlFor={`position-${work.id}`}
-                          className={labelClass}
-                        >
-                          Position
-                        </label>
+                        <div className="flex items-center justify-between">
+                          <label
+                            htmlFor={`position-${work.id}`}
+                            className={labelClass}
+                          >
+                            Position
+                          </label>
+                          {cvData.workExperience.length > 1 && (
+                            <button
+                              onClick={() => removeWorkExperience(work.id)}
+                              className={`text-sm text-red-600 hover:text-red-700 cursor-pointer transition-all duration-200`}
+                            >
+                              Delete
+                            </button>
+                          )}
+                        </div>
                         <input
                           type="text"
                           id={`position-${work.id}`}
