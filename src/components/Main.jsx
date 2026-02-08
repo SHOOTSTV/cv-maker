@@ -129,12 +129,13 @@ function Main() {
                   <div className="grid grid-cols-2 gap-4">
                     <div>
                       <label htmlFor="first-name" className={labelClass}>
-                        First Name
+                        First Name *
                       </label>
                       <input
                         type="text"
                         placeholder="John"
                         id="first-name"
+                        required
                         className={inputClass}
                         value={cvData.personalInformation.firstName}
                         onChange={(e) =>
@@ -150,12 +151,13 @@ function Main() {
                     </div>
                     <div>
                       <label htmlFor="last-name" className={labelClass}>
-                        Last Name
+                        Last Name *
                       </label>
                       <input
                         type="text"
                         placeholder="Doe"
                         id="last-name"
+                        required
                         className={inputClass}
                         value={cvData.personalInformation.lastName}
                         onChange={(e) =>
