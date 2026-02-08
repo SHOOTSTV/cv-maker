@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "../styles/App.css";
 
 const inputClass =
@@ -15,6 +16,26 @@ const buttonClass =
   "w-full py-3 rounded-xl bg-slate-800 text-white font-medium text-sm transition-all duration-200 hover:bg-slate-700 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 cursor-pointer";
 
 function Main() {
+  const [cvData, setCvData] = useState({
+    personalInformation: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+    },
+    educationalExperience: {
+      schoolName: "",
+      degree: "",
+      startDate: "",
+      endDate: "",
+    },
+    workExperience: {
+      companyName: "",
+      position: "",
+      startDate: "",
+      endDate: "",
+    },
+  });
   return (
     <>
       <main className="min-h-screen bg-linear-to-br from-slate-50 via-white to-slate-100 p-6 md:p-8">
@@ -28,7 +49,8 @@ function Main() {
               Fill in the information to generate your CV
             </p>
             <div className="space-y-6">
-              <form className={cardClass}>
+              {/* Personal Information */}
+              <form className={cardClass} onSubmit={(e) => e.preventDefault()}>
                 <h3 className={sectionTitleClass}>
                   <span className="w-1 h-5 bg-slate-800 rounded-full" />
                   Personal Information
@@ -44,6 +66,16 @@ function Main() {
                         placeholder="John"
                         id="first-name"
                         className={inputClass}
+                        value={cvData.personalInformation.firstName}
+                        onChange={(e) =>
+                          setCvData((prev) => ({
+                            ...prev,
+                            personalInformation: {
+                              ...prev.personalInformation,
+                              firstName: e.target.value,
+                            },
+                          }))
+                        }
                       />
                     </div>
                     <div>
@@ -55,6 +87,16 @@ function Main() {
                         placeholder="Doe"
                         id="last-name"
                         className={inputClass}
+                        value={cvData.personalInformation.lastName}
+                        onChange={(e) =>
+                          setCvData((prev) => ({
+                            ...prev,
+                            personalInformation: {
+                              ...prev.personalInformation,
+                              lastName: e.target.value,
+                            },
+                          }))
+                        }
                       />
                     </div>
                   </div>
@@ -67,6 +109,16 @@ function Main() {
                       placeholder="john.doe@example.com"
                       id="email"
                       className={inputClass}
+                      value={cvData.personalInformation.email}
+                      onChange={(e) =>
+                        setCvData((prev) => ({
+                          ...prev,
+                          personalInformation: {
+                            ...prev.personalInformation,
+                            email: e.target.value,
+                          },
+                        }))
+                      }
                     />
                   </div>
                   <div>
@@ -78,6 +130,16 @@ function Main() {
                       placeholder="+1234567890"
                       id="phone"
                       className={inputClass}
+                      value={cvData.personalInformation.phone}
+                      onChange={(e) =>
+                        setCvData((prev) => ({
+                          ...prev,
+                          personalInformation: {
+                            ...prev.personalInformation,
+                            phone: e.target.value,
+                          },
+                        }))
+                      }
                     />
                   </div>
                 </div>
@@ -85,23 +147,13 @@ function Main() {
                   Save
                 </button>
               </form>
+              {/* Educational Experience */}
               <form className={cardClass}>
                 <h3 className={sectionTitleClass}>
                   <span className="w-1 h-5 bg-slate-800 rounded-full" />
                   Educational Experience
                 </h3>
                 <div className="space-y-4">
-                  <div>
-                    <label htmlFor="school-name" className={labelClass}>
-                      School Name
-                    </label>
-                    <input
-                      type="text"
-                      id="school-name"
-                      placeholder="University name"
-                      className={inputClass}
-                    />
-                  </div>
                   <div>
                     <label htmlFor="degree" className={labelClass}>
                       Degree
@@ -111,6 +163,37 @@ function Main() {
                       id="degree"
                       placeholder="e.g. Bachelor of Science"
                       className={inputClass}
+                      value={cvData.educationalExperience.degree}
+                      onChange={(e) =>
+                        setCvData((prev) => ({
+                          ...prev,
+                          educationalExperience: {
+                            ...prev.educationalExperience,
+                            degree: e.target.value,
+                          },
+                        }))
+                      }
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="school-name" className={labelClass}>
+                      School Name
+                    </label>
+                    <input
+                      type="text"
+                      id="school-name"
+                      placeholder="University name"
+                      className={inputClass}
+                      value={cvData.educationalExperience.schoolName}
+                      onChange={(e) =>
+                        setCvData((prev) => ({
+                          ...prev,
+                          educationalExperience: {
+                            ...prev.educationalExperience,
+                            schoolName: e.target.value,
+                          },
+                        }))
+                      }
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-4">
@@ -123,6 +206,16 @@ function Main() {
                         placeholder="2020"
                         id="edu-start-date"
                         className={inputClass}
+                        value={cvData.educationalExperience.startDate}
+                        onChange={(e) =>
+                          setCvData((prev) => ({
+                            ...prev,
+                            educationalExperience: {
+                              ...prev.educationalExperience,
+                              startDate: e.target.value,
+                            },
+                          }))
+                        }
                       />
                     </div>
                     <div>
@@ -134,6 +227,16 @@ function Main() {
                         placeholder="2024"
                         id="edu-end-date"
                         className={inputClass}
+                        value={cvData.educationalExperience.endDate}
+                        onChange={(e) =>
+                          setCvData((prev) => ({
+                            ...prev,
+                            educationalExperience: {
+                              ...prev.educationalExperience,
+                              endDate: e.target.value,
+                            },
+                          }))
+                        }
                       />
                     </div>
                   </div>
@@ -142,23 +245,13 @@ function Main() {
                   Save
                 </button>
               </form>
+              {/* Work Experience */}
               <form className={cardClass}>
                 <h3 className={sectionTitleClass}>
                   <span className="w-1 h-5 bg-slate-800 rounded-full" />
                   Work Experience
                 </h3>
                 <div className="space-y-4">
-                  <div>
-                    <label htmlFor="company-name" className={labelClass}>
-                      Company Name
-                    </label>
-                    <input
-                      type="text"
-                      id="company-name"
-                      placeholder="Company name"
-                      className={inputClass}
-                    />
-                  </div>
                   <div>
                     <label htmlFor="position" className={labelClass}>
                       Position
@@ -168,6 +261,37 @@ function Main() {
                       id="position"
                       placeholder="Your job title"
                       className={inputClass}
+                      value={cvData.workExperience.position}
+                      onChange={(e) =>
+                        setCvData((prev) => ({
+                          ...prev,
+                          workExperience: {
+                            ...prev.workExperience,
+                            position: e.target.value,
+                          },
+                        }))
+                      }
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="company-name" className={labelClass}>
+                      Company Name
+                    </label>
+                    <input
+                      type="text"
+                      id="company-name"
+                      placeholder="Company name"
+                      className={inputClass}
+                      value={cvData.workExperience.companyName}
+                      onChange={(e) =>
+                        setCvData((prev) => ({
+                          ...prev,
+                          workExperience: {
+                            ...prev.workExperience,
+                            companyName: e.target.value,
+                          },
+                        }))
+                      }
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-4">
@@ -180,6 +304,16 @@ function Main() {
                         placeholder="2020"
                         id="work-start-date"
                         className={inputClass}
+                        value={cvData.workExperience.startDate}
+                        onChange={(e) =>
+                          setCvData((prev) => ({
+                            ...prev,
+                            workExperience: {
+                              ...prev.workExperience,
+                              startDate: e.target.value,
+                            },
+                          }))
+                        }
                       />
                     </div>
                     <div>
@@ -191,6 +325,16 @@ function Main() {
                         placeholder="2024"
                         id="work-end-date"
                         className={inputClass}
+                        value={cvData.workExperience.endDate}
+                        onChange={(e) =>
+                          setCvData((prev) => ({
+                            ...prev,
+                            workExperience: {
+                              ...prev.workExperience,
+                              endDate: e.target.value,
+                            },
+                          }))
+                        }
                       />
                     </div>
                   </div>
@@ -222,12 +366,17 @@ function Main() {
                 {/* Header / Contact */}
                 <header className="border-b border-slate-200 pb-4 mb-6">
                   <h1 className="text-2xl font-bold text-slate-900 tracking-tight">
-                    John Doe
+                    {cvData.personalInformation.firstName ||
+                    cvData.personalInformation.lastName
+                      ? `${cvData.personalInformation.firstName} ${cvData.personalInformation.lastName}`.trim()
+                      : "John Doe"}
                   </h1>
                   <p className="text-slate-600 text-sm mt-1">
-                    john.doe@example.com
+                    {cvData.personalInformation.email || "john.doe@example.com"}
                   </p>
-                  <p className="text-slate-600 text-sm">+1234567890</p>
+                  <p className="text-slate-600 text-sm">
+                    {cvData.personalInformation.phone || "+1234567890"}
+                  </p>
                 </header>
                 {/* Educational Experience */}
                 <section className="mb-6">
@@ -235,9 +384,13 @@ function Main() {
                     Educational Experience
                   </h2>
                   <div>
-                    <p className="font-semibold text-slate-900">Degree</p>
+                    <p className="font-semibold text-slate-900">
+                      {cvData.educationalExperience.degree || "Degree"}
+                    </p>
                     <p className="text-sm text-slate-600">
-                      School Name • 2020 – 2024
+                      {cvData.educationalExperience.schoolName || "School Name"}{" "}
+                      • {cvData.educationalExperience.startDate || "2020"} –{" "}
+                      {cvData.educationalExperience.endDate || "2024"}
                     </p>
                   </div>
                 </section>
@@ -247,9 +400,13 @@ function Main() {
                     Work Experience
                   </h2>
                   <div>
-                    <p className="font-semibold text-slate-900">Position</p>
+                    <p className="font-semibold text-slate-900">
+                      {cvData.workExperience.position || "Position"}
+                    </p>
                     <p className="text-sm text-slate-600">
-                      Company Name • 2020 – 2024
+                      {cvData.workExperience.companyName || "Company Name"} •{" "}
+                      {cvData.workExperience.startDate || "2020"} –{" "}
+                      {cvData.workExperience.endDate || "2024"}
                     </p>
                   </div>
                 </section>
