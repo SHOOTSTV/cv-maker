@@ -20,6 +20,7 @@ function Main() {
     personalInformation: {
       firstName: "",
       lastName: "",
+      searchedJob: "",
       email: "",
       phone: "",
     },
@@ -173,46 +174,69 @@ function Main() {
                     </div>
                   </div>
                   <div>
-                    <label htmlFor="email" className={labelClass}>
-                      Email
+                    <label htmlFor="searched-job" className={labelClass}>
+                      Searched Job
                     </label>
                     <input
-                      type="email"
-                      placeholder="john.doe@example.com"
-                      id="email"
+                      type="text"
+                      placeholder="e.g. Software Engineer"
+                      id="searched-job"
                       className={inputClass}
-                      value={cvData.personalInformation.email}
+                      value={cvData.personalInformation.searchedJob}
                       onChange={(e) =>
                         setCvData((prev) => ({
                           ...prev,
                           personalInformation: {
                             ...prev.personalInformation,
-                            email: e.target.value,
+                            searchedJob: e.target.value,
                           },
                         }))
                       }
                     />
                   </div>
-                  <div>
-                    <label htmlFor="phone" className={labelClass}>
-                      Phone
-                    </label>
-                    <input
-                      type="tel"
-                      placeholder="+1234567890"
-                      id="phone"
-                      className={inputClass}
-                      value={cvData.personalInformation.phone}
-                      onChange={(e) =>
-                        setCvData((prev) => ({
-                          ...prev,
-                          personalInformation: {
-                            ...prev.personalInformation,
-                            phone: e.target.value,
-                          },
-                        }))
-                      }
-                    />
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="email" className={labelClass}>
+                        Email
+                      </label>
+                      <input
+                        type="email"
+                        placeholder="john.doe@example.com"
+                        id="email"
+                        className={inputClass}
+                        value={cvData.personalInformation.email}
+                        onChange={(e) =>
+                          setCvData((prev) => ({
+                            ...prev,
+                            personalInformation: {
+                              ...prev.personalInformation,
+                              email: e.target.value,
+                            },
+                          }))
+                        }
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="phone" className={labelClass}>
+                        Phone
+                      </label>
+                      <input
+                        type="tel"
+                        placeholder="+1234567890"
+                        id="phone"
+                        className={inputClass}
+                        value={cvData.personalInformation.phone}
+                        onChange={(e) =>
+                          setCvData((prev) => ({
+                            ...prev,
+                            personalInformation: {
+                              ...prev.personalInformation,
+                              phone: e.target.value,
+                            },
+                          }))
+                        }
+                      />
+                    </div>
                   </div>
                 </div>
                 <button
@@ -498,6 +522,10 @@ function Main() {
                       ? `${cvData.personalInformation.firstName} ${cvData.personalInformation.lastName}`.trim()
                       : "John Doe"}
                   </h1>
+                  <p className="text-slate-600 text-sm">
+                    {cvData.personalInformation.searchedJob ||
+                      "Software Engineer"}
+                  </p>
                   <p className="text-slate-600 text-sm mt-1">
                     {cvData.personalInformation.email || "john.doe@example.com"}
                   </p>
