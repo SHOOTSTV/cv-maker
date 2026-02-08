@@ -13,7 +13,7 @@ const cardClass =
   "bg-white rounded-2xl p-6 shadow-sm border border-slate-100 mb-6 last:mb-0";
 
 const buttonClass =
-  "w-full py-3 rounded-xl bg-slate-800 text-white font-medium text-sm transition-all duration-200 hover:bg-slate-700 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 cursor-pointer";
+  "w-full py-3 rounded-xl bg-blue-600 text-white font-medium text-sm transition-all duration-200 hover:bg-blue-500 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 cursor-pointer";
 
 function Main() {
   const [cvData, setCvData] = useState({
@@ -143,7 +143,10 @@ function Main() {
                     />
                   </div>
                 </div>
-                <button type="submit" className={`${buttonClass} mt-5`}>
+                <button
+                  type="submit"
+                  className={`${buttonClass} mt-5 bg-slate-800 hover:bg-slate-700`}
+                >
                   Save
                 </button>
               </form>
@@ -242,7 +245,7 @@ function Main() {
                   </div>
                 </div>
                 <button type="submit" className={`${buttonClass} mt-5`}>
-                  Save
+                  + Add
                 </button>
               </form>
               {/* Work Experience */}
@@ -339,8 +342,8 @@ function Main() {
                     </div>
                   </div>
                 </div>
-                <button type="submit" className={`${buttonClass} mt-5`}>
-                  Save
+                <button type="submit" className={`${buttonClass}  mt-5`}>
+                  + Add
                 </button>
               </form>
             </div>
