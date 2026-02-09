@@ -1,19 +1,8 @@
 import { useState } from "react";
 import "../styles/App.css";
-
-const inputClass =
-  "w-full px-4 py-3 rounded-xl border border-slate-200 bg-white/80 text-slate-800 placeholder:text-slate-400 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-slate-300 focus:border-transparent ";
-
-const labelClass = "text-sm font-medium text-slate-600 mb-1.5 block";
-
-const sectionTitleClass =
-  "text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2";
-
-const cardClass =
-  "bg-white rounded-2xl p-6 shadow-sm border border-slate-100 mb-6 last:mb-0";
-
-const buttonClass =
-  "w-full py-3 rounded-xl bg-blue-600 text-white font-medium text-sm transition-all duration-200 hover:bg-blue-500 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 cursor-pointer";
+import { EducationalExperienceSection } from "./EducationalExperienceSection";
+import { PersonalInfoForm } from "./PersonalInfoForm";
+import { WorkExperienceSection } from "./WorkExperienceSection";
 
 function Main() {
   const [cvData, setCvData] = useState({
@@ -31,6 +20,16 @@ function Main() {
       { id: 1, companyName: "", position: "", startDate: "", endDate: "" },
     ],
   });
+
+  const updatePersonalInfo = (field, value) => {
+    setCvData((prev) => ({
+      ...prev,
+      personalInformation: {
+        ...prev.personalInformation,
+        [field]: value,
+      },
+    }));
+  };
 
   const addEducationalExperience = () => {
     setCvData((prev) => {
@@ -88,15 +87,6 @@ function Main() {
     }));
   };
 
-  const removeWorkExperience = (id) => {
-    if (cvData.workExperience.length > 1) {
-      setCvData((prev) => ({
-        ...prev,
-        workExperience: prev.workExperience.filter((work) => work.id !== id),
-      }));
-    }
-  };
-
   const removeEducationalExperience = (id) => {
     if (cvData.educationalExperience.length > 1) {
       setCvData((prev) => ({
@@ -107,6 +97,16 @@ function Main() {
       }));
     }
   };
+
+  const removeWorkExperience = (id) => {
+    if (cvData.workExperience.length > 1) {
+      setCvData((prev) => ({
+        ...prev,
+        workExperience: prev.workExperience.filter((work) => work.id !== id),
+      }));
+    }
+  };
+
   return (
     <>
       <main className="min-h-screen bg-linear-to-br from-slate-50 via-white to-slate-100 p-6 md:p-8">
@@ -121,379 +121,25 @@ function Main() {
             </p>
             <div className="space-y-6">
               {/* Personal Information */}
-              <form className={cardClass} onSubmit={(e) => e.preventDefault()}>
-                <h3 className={sectionTitleClass}>
-                  <span className="w-1 h-5 bg-slate-800 rounded-full" />
-                  Personal Information
-                </h3>
-                <div className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="first-name" className={labelClass}>
-                        First Name *
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="John"
-                        id="first-name"
-                        required
-                        className={inputClass}
-                        value={cvData.personalInformation.firstName}
-                        onChange={(e) =>
-                          setCvData((prev) => ({
-                            ...prev,
-                            personalInformation: {
-                              ...prev.personalInformation,
-                              firstName: e.target.value,
-                            },
-                          }))
-                        }
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="last-name" className={labelClass}>
-                        Last Name *
-                      </label>
-                      <input
-                        type="text"
-                        placeholder="Doe"
-                        id="last-name"
-                        required
-                        className={inputClass}
-                        value={cvData.personalInformation.lastName}
-                        onChange={(e) =>
-                          setCvData((prev) => ({
-                            ...prev,
-                            personalInformation: {
-                              ...prev.personalInformation,
-                              lastName: e.target.value,
-                            },
-                          }))
-                        }
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label htmlFor="searched-job" className={labelClass}>
-                      Searched Job
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="e.g. Software Engineer"
-                      id="searched-job"
-                      className={inputClass}
-                      value={cvData.personalInformation.searchedJob}
-                      onChange={(e) =>
-                        setCvData((prev) => ({
-                          ...prev,
-                          personalInformation: {
-                            ...prev.personalInformation,
-                            searchedJob: e.target.value,
-                          },
-                        }))
-                      }
-                    />
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label htmlFor="email" className={labelClass}>
-                        Email
-                      </label>
-                      <input
-                        type="email"
-                        placeholder="john.doe@example.com"
-                        id="email"
-                        className={inputClass}
-                        value={cvData.personalInformation.email}
-                        onChange={(e) =>
-                          setCvData((prev) => ({
-                            ...prev,
-                            personalInformation: {
-                              ...prev.personalInformation,
-                              email: e.target.value,
-                            },
-                          }))
-                        }
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="phone" className={labelClass}>
-                        Phone
-                      </label>
-                      <input
-                        type="tel"
-                        placeholder="+1234567890"
-                        id="phone"
-                        className={inputClass}
-                        value={cvData.personalInformation.phone}
-                        onChange={(e) =>
-                          setCvData((prev) => ({
-                            ...prev,
-                            personalInformation: {
-                              ...prev.personalInformation,
-                              phone: e.target.value,
-                            },
-                          }))
-                        }
-                      />
-                    </div>
-                  </div>
-                </div>
-                <button
-                  type="submit"
-                  className={`${buttonClass} mt-5 bg-slate-800 hover:bg-slate-700`}
-                >
-                  Save
-                </button>
-              </form>
+              <PersonalInfoForm
+                data={cvData.personalInformation}
+                onChange={updatePersonalInfo}
+              />
               {/* Educational Experience */}
-              <form className={cardClass} onSubmit={(e) => e.preventDefault()}>
-                <h3 className={sectionTitleClass}>
-                  <span className="w-1 h-5 bg-slate-800 rounded-full" />
-                  Educational Experience
-                </h3>
-                <div className="space-y-6">
-                  {cvData.educationalExperience.map((edu) => (
-                    <div
-                      key={edu.id}
-                      className="space-y-4 p-4 rounded-xl bg-slate-50/80 border border-slate-100"
-                    >
-                      <div>
-                        <div className="flex items-center justify-between">
-                          <label
-                            htmlFor={`degree-${edu.id}`}
-                            className={labelClass}
-                          >
-                            Degree
-                          </label>
-                          {cvData.educationalExperience.length > 1 && (
-                            <button
-                              onClick={() =>
-                                removeEducationalExperience(edu.id)
-                              }
-                              className={`text-sm text-red-600 hover:text-red-700 cursor-pointer transition-all duration-200`}
-                            >
-                              Delete
-                            </button>
-                          )}
-                        </div>
-                        <input
-                          type="text"
-                          id={`degree-${edu.id}`}
-                          placeholder="e.g. Bachelor of Science"
-                          className={inputClass}
-                          value={edu.degree}
-                          onChange={(e) =>
-                            updateEducationalExperience(
-                              edu.id,
-                              "degree",
-                              e.target.value
-                            )
-                          }
-                        />
-                      </div>
-                      <div>
-                        <label
-                          htmlFor={`school-name-${edu.id}`}
-                          className={labelClass}
-                        >
-                          School Name
-                        </label>
-                        <input
-                          type="text"
-                          id={`school-name-${edu.id}`}
-                          placeholder="University name"
-                          className={inputClass}
-                          value={edu.schoolName}
-                          onChange={(e) =>
-                            updateEducationalExperience(
-                              edu.id,
-                              "schoolName",
-                              e.target.value
-                            )
-                          }
-                        />
-                      </div>
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <label
-                            htmlFor={`edu-start-date-${edu.id}`}
-                            className={labelClass}
-                          >
-                            Start Date
-                          </label>
-                          <input
-                            type="text"
-                            placeholder="2020"
-                            id={`edu-start-date-${edu.id}`}
-                            className={inputClass}
-                            value={edu.startDate}
-                            onChange={(e) =>
-                              updateEducationalExperience(
-                                edu.id,
-                                "startDate",
-                                e.target.value
-                              )
-                            }
-                          />
-                        </div>
-                        <div>
-                          <label
-                            htmlFor={`edu-end-date-${edu.id}`}
-                            className={labelClass}
-                          >
-                            End Date
-                          </label>
-                          <input
-                            type="text"
-                            placeholder="2024"
-                            id={`edu-end-date-${edu.id}`}
-                            className={inputClass}
-                            value={edu.endDate}
-                            onChange={(e) =>
-                              updateEducationalExperience(
-                                edu.id,
-                                "endDate",
-                                e.target.value
-                              )
-                            }
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <button
-                  type="button"
-                  className={`${buttonClass} mt-5`}
-                  onClick={addEducationalExperience}
-                >
-                  + Add
-                </button>
-              </form>
+              <EducationalExperienceSection
+                data={cvData.educationalExperience}
+                onChange={updateEducationalExperience}
+                onAdd={addEducationalExperience}
+                onRemove={removeEducationalExperience}
+              />
+
               {/* Work Experience */}
-              <form className={cardClass} onSubmit={(e) => e.preventDefault()}>
-                <h3 className={sectionTitleClass}>
-                  <span className="w-1 h-5 bg-slate-800 rounded-full" />
-                  Work Experience
-                </h3>
-                <div className="space-y-6">
-                  {cvData.workExperience.map((work) => (
-                    <div
-                      key={work.id}
-                      className="space-y-4 p-4 rounded-xl bg-slate-50/80 border border-slate-100"
-                    >
-                      <div>
-                        <div className="flex items-center justify-between">
-                          <label
-                            htmlFor={`position-${work.id}`}
-                            className={labelClass}
-                          >
-                            Position
-                          </label>
-                          {cvData.workExperience.length > 1 && (
-                            <button
-                              onClick={() => removeWorkExperience(work.id)}
-                              className={`text-sm text-red-600 hover:text-red-700 cursor-pointer transition-all duration-200`}
-                            >
-                              Delete
-                            </button>
-                          )}
-                        </div>
-                        <input
-                          type="text"
-                          id={`position-${work.id}`}
-                          placeholder="Your job title"
-                          className={inputClass}
-                          value={work.position}
-                          onChange={(e) =>
-                            updateWorkExperience(
-                              work.id,
-                              "position",
-                              e.target.value
-                            )
-                          }
-                        />
-                      </div>
-                      <div>
-                        <label
-                          htmlFor={`company-name-${work.id}`}
-                          className={labelClass}
-                        >
-                          Company Name
-                        </label>
-                        <input
-                          type="text"
-                          id={`company-name-${work.id}`}
-                          placeholder="Company name"
-                          className={inputClass}
-                          value={work.companyName}
-                          onChange={(e) =>
-                            updateWorkExperience(
-                              work.id,
-                              "companyName",
-                              e.target.value
-                            )
-                          }
-                        />
-                      </div>
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <label
-                            htmlFor={`work-start-date-${work.id}`}
-                            className={labelClass}
-                          >
-                            Start Date
-                          </label>
-                          <input
-                            type="text"
-                            placeholder="2020"
-                            id={`work-start-date-${work.id}`}
-                            className={inputClass}
-                            value={work.startDate}
-                            onChange={(e) =>
-                              updateWorkExperience(
-                                work.id,
-                                "startDate",
-                                e.target.value
-                              )
-                            }
-                          />
-                        </div>
-                        <div>
-                          <label
-                            htmlFor={`work-end-date-${work.id}`}
-                            className={labelClass}
-                          >
-                            End Date
-                          </label>
-                          <input
-                            type="text"
-                            placeholder="2024"
-                            id={`work-end-date-${work.id}`}
-                            className={inputClass}
-                            value={work.endDate}
-                            onChange={(e) =>
-                              updateWorkExperience(
-                                work.id,
-                                "endDate",
-                                e.target.value
-                              )
-                            }
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <button
-                  type="button"
-                  className={`${buttonClass} mt-5`}
-                  onClick={addWorkExperience}
-                >
-                  + Add
-                </button>
-              </form>
+              <WorkExperienceSection
+                data={cvData.workExperience}
+                onChange={updateWorkExperience}
+                onAdd={addWorkExperience}
+                onRemove={removeWorkExperience}
+              />
             </div>
           </div>
           {/* Preview */}
