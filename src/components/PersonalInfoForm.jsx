@@ -120,7 +120,7 @@ export function PersonalInfoForm({ data, onChange }) {
       <button
         type="button"
         onClick={handleLockToggle}
-        className={`${buttonClass} mt-5 bg-slate-800 hover:bg-slate-700`}
+        className={`${buttonClass} mt-5${isLocked ? " bg-slate-800" : ""} `}
       >
         {isLocked ? "Edit" : "Save"}
       </button>
