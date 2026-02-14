@@ -4,7 +4,7 @@ import {
   inputClass,
   labelClass,
   sectionTitleClass,
-} from "../utils/formStyles";
+} from "../constants/formStyles";
 
 export function WorkExperienceSection({ data, onChange, onAdd, onRemove }) {
   return (

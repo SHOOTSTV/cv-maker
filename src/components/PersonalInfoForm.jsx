@@ -5,7 +5,7 @@ import {
   inputClass,
   labelClass,
   sectionTitleClass,
-} from "../utils/formStyles";
+} from "../constants/formStyles";
 
 export function PersonalInfoForm({ data, onChange }) {
   const [isLocked, setIsLocked] = useState(false);
@@ -120,7 +120,7 @@ export function PersonalInfoForm({ data, onChange }) {
       <button
         type="button"
         onClick={handleLockToggle}
-        className={`${buttonClass} mt-5${isLocked ? " bg-slate-800" : ""} `}
+        className={`${buttonClass} mt-5 ${isLocked ? " bg-slate-800" : ""} `}
       >
         {isLocked ? "Edit" : "Save"}
       </button>
