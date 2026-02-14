@@ -1,3 +1,4 @@
+import { DEFAULT_VALUES } from "../constants/constants";
 import {
   buttonClass,
   cardClass,
@@ -41,7 +42,7 @@ export function EducationalExperienceSection({
               <input
                 type="text"
                 id={`degree-${edu.id}`}
-                placeholder="e.g. Bachelor of Science"
+                placeholder={DEFAULT_VALUES.degree}
                 className={inputClass}
                 value={edu.degree}
                 onChange={(e) => onChange(edu.id, "degree", e.target.value)}
@@ -54,7 +55,7 @@ export function EducationalExperienceSection({
               <input
                 type="text"
                 id={`school-name-${edu.id}`}
-                placeholder="University name"
+                placeholder={DEFAULT_VALUES.school}
                 className={inputClass}
                 value={edu.schoolName}
                 onChange={(e) => onChange(edu.id, "schoolName", e.target.value)}
@@ -70,7 +71,7 @@ export function EducationalExperienceSection({
                 </label>
                 <input
                   type="text"
-                  placeholder="2020"
+                  placeholder={DEFAULT_VALUES.startDate}
                   id={`edu-start-date-${edu.id}`}
                   className={inputClass}
                   value={edu.startDate}
@@ -88,7 +89,7 @@ export function EducationalExperienceSection({
                 </label>
                 <input
                   type="text"
-                  placeholder="2024"
+                  placeholder={DEFAULT_VALUES.endDate}
                   id={`edu-end-date-${edu.id}`}
                   className={inputClass}
                   value={edu.endDate}

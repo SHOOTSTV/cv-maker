@@ -1,3 +1,4 @@
+import { DEFAULT_VALUES } from "../constants/constants";
 import {
   buttonClass,
   cardClass,
@@ -36,7 +37,7 @@ export function WorkExperienceSection({ data, onChange, onAdd, onRemove }) {
               <input
                 type="text"
                 id={`position-${work.id}`}
-                placeholder="Your job title"
+                placeholder={DEFAULT_VALUES.position}
                 className={inputClass}
                 value={work.position}
                 onChange={(e) => onChange(work.id, "position", e.target.value)}
@@ -49,7 +50,7 @@ export function WorkExperienceSection({ data, onChange, onAdd, onRemove }) {
               <input
                 type="text"
                 id={`company-name-${work.id}`}
-                placeholder="Company name"
+                placeholder={DEFAULT_VALUES.company}
                 className={inputClass}
                 value={work.companyName}
                 onChange={(e) =>
@@ -67,7 +68,7 @@ export function WorkExperienceSection({ data, onChange, onAdd, onRemove }) {
                 </label>
                 <input
                   type="text"
-                  placeholder="2020"
+                  placeholder={DEFAULT_VALUES.startDate}
                   id={`work-start-date-${work.id}`}
                   className={inputClass}
                   value={work.startDate}
@@ -85,7 +86,7 @@ export function WorkExperienceSection({ data, onChange, onAdd, onRemove }) {
                 </label>
                 <input
                   type="text"
-                  placeholder="2024"
+                  placeholder={DEFAULT_VALUES.endDate}
                   id={`work-end-date-${work.id}`}
                   className={inputClass}
                   value={work.endDate}

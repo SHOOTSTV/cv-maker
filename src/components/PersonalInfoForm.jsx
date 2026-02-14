@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { DEFAULT_VALUES } from "../constants/constants";
 import {
   buttonClass,
   cardClass,
@@ -46,7 +47,7 @@ export function PersonalInfoForm({ data, onChange }) {
               </label>
               <input
                 type="text"
-                placeholder="John"
+                placeholder={DEFAULT_VALUES.fullName.split(" ")[0]}
                 id="first-name"
                 required
                 className={inputClass}
@@ -61,7 +62,7 @@ export function PersonalInfoForm({ data, onChange }) {
               </label>
               <input
                 type="text"
-                placeholder="Doe"
+                placeholder={DEFAULT_VALUES.fullName.split(" ")[1]}
                 id="last-name"
                 required
                 className={inputClass}
@@ -77,7 +78,7 @@ export function PersonalInfoForm({ data, onChange }) {
             </label>
             <input
               type="text"
-              placeholder="e.g. Software Engineer"
+              placeholder={DEFAULT_VALUES.job}
               id="searched-job"
               className={inputClass}
               value={data?.searchedJob ?? ""}
@@ -92,7 +93,7 @@ export function PersonalInfoForm({ data, onChange }) {
               </label>
               <input
                 type="email"
-                placeholder="john.doe@example.com"
+                placeholder={DEFAULT_VALUES.email}
                 id="email"
                 className={inputClass}
                 value={data?.email ?? ""}
@@ -106,7 +107,7 @@ export function PersonalInfoForm({ data, onChange }) {
               </label>
               <input
                 type="tel"
-                placeholder="+1234567890"
+                placeholder={DEFAULT_VALUES.phone}
                 id="phone"
                 className={inputClass}
                 value={data?.phone ?? ""}
