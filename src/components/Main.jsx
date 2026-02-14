@@ -121,20 +121,16 @@ function Main() {
               Fill in the information to generate your CV
             </p>
             <div className="space-y-6">
-              {/* Personal Information */}
               <PersonalInfoForm
                 data={cvData.personalInformation}
                 onChange={updatePersonalInfo}
               />
-              {/* Educational Experience */}
               <EducationalExperienceSection
                 data={cvData.educationalExperience}
                 onChange={updateEducationalExperience}
                 onAdd={addEducationalExperience}
                 onRemove={removeEducationalExperience}
               />
-
-              {/* Work Experience */}
               <WorkExperienceSection
                 data={cvData.workExperience}
                 onChange={updateWorkExperience}
