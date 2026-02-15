@@ -1,3 +1,5 @@
+import { DEFAULT_VALUES } from "../constants/constants";
+
 function CvPreview({ cvData }) {
   return (
     <div className="space-y-2 lg:sticky lg:top-8 lg:self-start">
@@ -23,16 +25,16 @@ function CvPreview({ cvData }) {
               {cvData.personalInformation.firstName ||
               cvData.personalInformation.lastName
                 ? `${cvData.personalInformation.firstName} ${cvData.personalInformation.lastName}`.trim()
-                : "John Doe"}
+                : DEFAULT_VALUES.fullName}
             </h1>
             <p className="text-slate-600 text-sm">
-              {cvData.personalInformation.searchedJob || "Software Engineer"}
+              {cvData.personalInformation.searchedJob || DEFAULT_VALUES.job}
             </p>
             <p className="text-slate-600 text-sm mt-1">
-              {cvData.personalInformation.email || "john.doe@example.com"}
+              {cvData.personalInformation.email || DEFAULT_VALUES.email}
             </p>
             <p className="text-slate-600 text-sm">
-              {cvData.personalInformation.phone || "+1234567890"}
+              {cvData.personalInformation.phone || DEFAULT_VALUES.phone}
             </p>
           </header>
           {/* Educational Experience */}
@@ -43,11 +45,12 @@ function CvPreview({ cvData }) {
             {cvData.educationalExperience.map((edu) => (
               <div key={edu.id} className="mb-4 last:mb-0">
                 <p className="font-semibold text-slate-900">
-                  {edu.degree || "Degree"}
+                  {edu.degree || DEFAULT_VALUES.degree}
                 </p>
                 <p className="text-sm text-slate-600">
-                  {edu.schoolName || "School Name"} • {edu.startDate || "2020"}{" "}
-                  – {edu.endDate || "2024"}
+                  {edu.schoolName || DEFAULT_VALUES.school} •{" "}
+                  {edu.startDate || DEFAULT_VALUES.startDate} –{" "}
+                  {edu.endDate || DEFAULT_VALUES.endDate}
                 </p>
               </div>
             ))}
@@ -60,11 +63,12 @@ function CvPreview({ cvData }) {
             {cvData.workExperience.map((work) => (
               <div key={work.id} className="mb-4 last:mb-0">
                 <p className="font-semibold text-slate-900">
-                  {work.position || "Position"}
+                  {work.position || DEFAULT_VALUES.position}
                 </p>
                 <p className="text-sm text-slate-600">
-                  {work.companyName || "Company Name"} •{" "}
-                  {work.startDate || "2020"} – {work.endDate || "2024"}
+                  {work.companyName || DEFAULT_VALUES.company} •{" "}
+                  {work.startDate || DEFAULT_VALUES.startDate} –{" "}
+                  {work.endDate || DEFAULT_VALUES.endDate}
                 </p>
               </div>
             ))}
