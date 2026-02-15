@@ -3,15 +3,26 @@ import { DEFAULT_VALUES } from "../constants/constants";
 function CvPreview({ cvData }) {
   return (
     <div className="space-y-2 lg:sticky lg:top-8 lg:self-start">
-      <h2 className="text-2xl font-bold text-slate-800 tracking-tight">
-        Preview
-      </h2>
-      <p className="text-slate-500 text-sm mb-6">
-        Real-time preview of your CV
-      </p>
+      <div className="no-print flex items-center justify-between mb-6">
+        <div>
+          <h2 className="text-2xl font-bold text-slate-800 tracking-tight">
+            Preview
+          </h2>
+          <p className="text-slate-500 text-sm">
+            Real-time preview of your CV
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={() => window.print()}
+          className="px-4 py-2 bg-slate-800 text-white text-sm font-medium rounded-lg hover:bg-slate-700 transition-colors"
+        >
+          Download PDF
+        </button>
+      </div>
       {/* A4 page blank */}
       <div
-        className="bg-white text-left text-slate-800 shadow-sm border border-slate-100 overflow-hidden flex flex-col"
+        className="bg-white text-left text-slate-800 shadow-sm border border-slate-100 overflow-hidden flex flex-col print:shadow-none print:border-0"
         style={{
           width: "210mm",
           minHeight: "297mm",
