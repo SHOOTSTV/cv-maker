@@ -113,7 +113,7 @@ function Main() {
       <main className="min-h-screen bg-linear-to-br from-slate-50 via-white to-slate-100 p-6 md:p-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
           {/* Informations */}
-          <div className="space-y-2">
+          <div className="space-y-2 no-print">
             <h2 className="text-2xl font-bold text-slate-800 tracking-tight">
               Your informations
             </h2>
@@ -121,20 +121,16 @@ function Main() {
               Fill in the information to generate your CV
             </p>
             <div className="space-y-6">
-              {/* Personal Information */}
               <PersonalInfoForm
                 data={cvData.personalInformation}
                 onChange={updatePersonalInfo}
               />
-              {/* Educational Experience */}
               <EducationalExperienceSection
                 data={cvData.educationalExperience}
                 onChange={updateEducationalExperience}
                 onAdd={addEducationalExperience}
                 onRemove={removeEducationalExperience}
               />
-
-              {/* Work Experience */}
               <WorkExperienceSection
                 data={cvData.workExperience}
                 onChange={updateWorkExperience}
